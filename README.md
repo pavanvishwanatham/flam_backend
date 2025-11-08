@@ -198,15 +198,3 @@ Example: for base = 2
 | `python main.py status`                 | JSON summary of job states                |
 
 
-💀 Dead Letter Queue
-python main.py dlq list
-python main.py dlq retry bad1
-
-⚙️ Manage configuration
-python main.py config set max-retries 3
-python main.py config get max-retries
-python main.py config set backoff_base 2
-python main.py config get backoff_base
-
-🧪
-

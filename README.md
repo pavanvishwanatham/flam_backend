@@ -7,9 +7,13 @@ Database: SQLite (built-in, no setup required)
 Interface: Command-Line Interface (CLI)
 
 
+
+
 🎯 Objective
 
 QueueCTL is a CLI-based background job queue system that can enqueue tasks, execute them with workers, handle retries with exponential backoff, and move failed jobs into a Dead Letter Queue (DLQ) after exhausting retries.
+
+
 
 
 
@@ -28,6 +32,8 @@ queuectl/
 ├── utils.py             # Timestamp helpers
 
 └── README.md            # Documentation
+
+
 
 
 🧩 Job Specification
@@ -55,6 +61,8 @@ Each job follows the structure below:
 
 
 
+
+
 🧠 Job Lifecycle
 
 State	Description
@@ -70,7 +78,10 @@ failed	Failed, retryable
 dead	Permanently failed → moved to DLQ
 
 
+
+
 ⚙️ Installation & Setup
+
 
 
 1️⃣ Clone the repository
@@ -90,6 +101,8 @@ SQLite comes pre-installed with Python, so no database setup is needed.
 python main.py
 
 
+
+
 💻 Usage Examples
 
 🟢 Enqueue jobs
@@ -99,14 +112,20 @@ python main.py enqueue "{\"id\":\"job1\",\"command\":\"echo Hello World\"}"
 python main.py enqueue "{\"id\":\"job2\",\"command\":\"sleep 2\"}"
 
 
+
+
 ⚙️ Start workers
 
 python main.py worker start --count 2
 
 
+
+
 🛑 Stop workers
 
 python main.py worker stop
+
+
 
 
 📊 Check status
@@ -133,6 +152,8 @@ Example output
 }
 
 
+
+
 📋 List jobs
 
 python main.py list
@@ -141,11 +162,15 @@ python main.py list --state completed
 
 
 
+
+
 💀 Dead Letter Queue
 
 python main.py dlq list
 
 python main.py dlq retry bad1
+
+
 
 
 
@@ -158,6 +183,8 @@ python main.py config get max-retries
 python main.py config set backoff_base 2
 
 python main.py config get backoff_base
+
+
 
 
 
@@ -174,6 +201,8 @@ python main.py config get backoff_base
 4	Restart system	Jobs persist from SQLite
 
 5	Retry from DLQ	Moved back to pending, reprocessed
+
+
 
 
 

@@ -12,6 +12,7 @@ Interface: Command-Line Interface (CLI)
 QueueCTL is a CLI-based background job queue system that can enqueue tasks, execute them with workers, handle retries with exponential backoff, and move failed jobs into a Dead Letter Queue (DLQ) after exhausting retries.
 
 
+
 🧱 Project Structure
 
 queuectl/

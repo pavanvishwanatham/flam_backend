@@ -33,24 +33,39 @@ queuectl/
 
 Each job follows the structure below:
 
+
 {
+
   "id": "unique-job-id",
+  
   "command": "echo 'Hello World'",
+  
   "state": "pending",
+  
   "attempts": 0,
+  
   "max_retries": 3,
+  
   "created_at": "2025-11-04T10:30:00Z",
+  
   "updated_at": "2025-11-04T10:30:00Z"
+  
 }
 
 
 
 🧠 Job Lifecycle
+
 State	Description
+
 pending	Waiting to be picked up by a worker
+
 processing	Currently being executed
+
 completed	Successfully executed
+
 failed	Failed, retryable
+
 dead	Permanently failed → moved to DLQ
 
 
@@ -60,6 +75,7 @@ dead	Permanently failed → moved to DLQ
 1️⃣ Clone the repository
 
 git clone https://github.com/<your-username>/queuectl.git
+
 cd queuectl
 
 
@@ -69,66 +85,99 @@ SQLite comes pre-installed with Python, so no database setup is needed.
 
 
 3️⃣ Run the CLI
+
 python main.py
 
 
 💻 Usage Examples
+
 🟢 Enqueue jobs
 
 python main.py enqueue "{\"id\":\"job1\",\"command\":\"echo Hello World\"}"
+
 python main.py enqueue "{\"id\":\"job2\",\"command\":\"sleep 2\"}"
 
 
 ⚙️ Start workers
+
 python main.py worker start --count 2
 
 
 🛑 Stop workers
+
 python main.py worker stop
 
 
 📊 Check status
+
 python main.py status
 
 
 Example output
+
 {
+
   "pending": 0,
+  
   "processing": 0,
+  
   "completed": 3,
+  
   "failed": 0,
+  
   "dead": 1,
+  
   "active_workers": 0
+  
 }
 
 
 📋 List jobs
+
 python main.py list
+
 python main.py list --state completed
 
 
+
 💀 Dead Letter Queue
+
 python main.py dlq list
+
 python main.py dlq retry bad1
 
 
+
 ⚙️ Manage configuration
+
 python main.py config set max-retries 3
+
 python main.py config get max-retries
+
 python main.py config set backoff_base 2
+
 python main.py config get backoff_base
 
 
+
 🧪 Expected Test Scenarios
+
 #	Scenario	Expected Behavior
+
 1	Job executes successfully	State → completed
+
 2	Job fails repeatedly	Retries (exponential delay) → DLQ
+
 3	Multiple workers	Parallel job execution, no duplicates
+
 4	Restart system	Jobs persist from SQLite
+
 5	Retry from DLQ	Moved back to pending, reprocessed
 
 
+
 🧮 Exponential Backoff Formula
+
 delay = base ^ attempts
 
 

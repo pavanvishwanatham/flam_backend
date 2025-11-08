@@ -16,6 +16,7 @@ QueueCTL is a CLI-based background job queue system that can enqueue tasks, exec
 🧱 Project Structure
 
 queuectl/
+
 ├── main.py              # Entry point
 
 ├── cli.py               # CLI command handling

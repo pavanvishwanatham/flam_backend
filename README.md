@@ -17,10 +17,15 @@ QueueCTL is a CLI-based background job queue system that can enqueue tasks, exec
 
 queuectl/
 ├── main.py              # Entry point
+
 ├── cli.py               # CLI command handling
+
 ├── db.py                # SQLite storage logic
+
 ├── worker.py            # Worker & retry handling
+
 ├── utils.py             # Timestamp helpers
+
 └── README.md            # Documentation
 
 
